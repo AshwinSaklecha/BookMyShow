@@ -3,27 +3,20 @@ import { Form, Input, Button, Radio, message } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import { RegisterUser } from "../calls/users";
 
-
 function Register() {
   const onFinish = async (values) => {
-    console.log(values);
-    try{
+    // console.log(values);
+    try {
       const response = await RegisterUser(values);
-      if(response.success){
+      if (response.success) {
         message.success(response.message);
-      }
-      else{
+      } else {
         message.error(response.message);
-      
       }
-    }
-    catch(error){
+    } catch (error) {
       message.error(error.message);
     }
-   
   };
-
-
 
   return (
     <>
@@ -91,15 +84,14 @@ function Register() {
                 name="role"
                 className="d-block text-center"
                 initialValue={false}
-                rules={[{ required: true, message: "Please select an option!" }]}
+                rules={[
+                  { required: true, message: "Please select an option!" },
+                ]}
               >
                 <div className="d-flex justify-content-start">
-                  <Radio.Group
-                    name="radiogroup"
-                    className="flex-start"
-                  >
-                    <Radio value={'partner'}>Yes</Radio>
-                    <Radio value={'user'}>No</Radio>
+                  <Radio.Group name="radiogroup" className="flex-start">
+                    <Radio value={"partner"}>Yes</Radio>
+                    <Radio value={"user"}>No</Radio>
                   </Radio.Group>
                 </div>
               </Form.Item>
